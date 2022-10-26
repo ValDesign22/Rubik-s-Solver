@@ -6,4 +6,4 @@ This project use [pybricks](https://pybricks.com/ev3-micropython/) and Rubik's C
 
 Actually this prooject is not finished, please be careful.
 
-If you want to help me on this project you can create a pull request.
+If you want to help me on this project you can create a [pull request](https://github.com/ValRedstone/Rubik-s-Solver/compare).
