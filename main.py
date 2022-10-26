@@ -65,13 +65,12 @@ movesList = scramble.split(" ")
 
 count = 0
 moves = []
+size = len(movesList)
 
-while count < len(movesList):
+while count < size:
     item = movesList[count]
     item2 = movesList[count+1]
-    item3 = "X"
-    if count+2 < len(movesList):
-        item3 = movesList[count+2]
+    item3 = "X" if count+2 > len(size) else movesList[count+2]
 
     if ((item == item2) and (item2 == item3)):
         moves.append(item+"'")
