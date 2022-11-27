@@ -322,12 +322,12 @@ class RubiksColorSolverGeneric(RubiksCube, WwwMixin):
             side = self.pos2side[position]
             side.set_square(position, red, green, blue)
 
-        if self.write_debug_file:
-            self.www_header()
+        # if self.write_debug_file:
+        #     self.www_header()
 
-            with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
-                fh.write("<h1>RGB Input</h1>\n")
-                fh.write("<pre>{}</pre>\n".format(scan_data))
+        #     with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
+        #         fh.write("<h1>RGB Input</h1>\n")
+        #         fh.write("<pre>{}</pre>\n".format(scan_data))
 
         self.calculate_pos2square()
 
@@ -901,7 +901,7 @@ class RubiksColorSolverGeneric(RubiksCube, WwwMixin):
     def crunch_colors(self) -> None:
         if self.write_debug_file:
             html_init_cube = self.html_cube("Initial RGB values", False, "initial_rgb_values")
-            self.write_html(html_init_cube)
+            # self.write_html(html_init_cube)
             self.write_crayola_colors()
 
         self.resolve_color_box()
@@ -920,8 +920,8 @@ class RubiksColorSolverGeneric(RubiksCube, WwwMixin):
             html_final_cube = self.html_cube("Final Cube", True, "final_cube")
             html = "<div id='bottom'>{}{}</div>".format(html_init_cube, html_final_cube)
 
-            self.write_html(html)
-            self.www_footer()
+            # self.write_html(html)
+            # self.www_footer()
 
     def print_profile_data(self):
         pass

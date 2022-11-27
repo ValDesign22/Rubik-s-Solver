@@ -23,40 +23,6 @@ i = 0
 color = Color.WHITE
 color = []
 
-# In progress
-
-# while i < 54:
-#     while not button.pressed():
-#         color = sensor.color()
-
-#         if color != None:
-#             ev3.screen.clear()
-#             ev3.screen.draw_text(x=50, y=75, text=("%d/54" % i))
-#             if color == Color.GREEN:
-#                 ev3.screen.draw_text(x=50, y=50, text="GREEN")
-#             elif color == Color.RED:
-#                 ev3.screen.draw_text(x=50, y=50, text="RED")
-#             elif color == Color.BLUE:
-#                 ev3.screen.draw_text(x=50, y=50, text="BLUE")
-#             elif color == Color.WHITE:
-#                 ev3.screen.draw_text(x=50, y=50, text="WHITE")
-#             elif color == Color.YELLOW:
-#                 ev3.screen.draw_text(x=50, y=50, text="YELLOW")
-#             elif color == Color.BLACK:
-#                 ev3.screen.draw_text(x=50, y=50, text="ORANGE")
-#         else:
-#             ev3.screen.clear()
-#             ev3.screen.draw_text(x=50, y=50, text=("%d/54" % i))
-#         time.sleep(0.5)
-    
-#     if color != None:
-#         i = i+1
-#         ev3.speaker.beep(frequency=300)
-#     else:
-#         ev3.speaker.beep(frequency=100)
-#     time.sleep(0.1)
-# cube = Cube("WWWWWWWWWGGGRRRBBBOOOOOOGGGRRRBBBOOOGGGRRRBBBYYYYYYYYY")
-
 solve = resolve_colors("cube.txt")
 
 scramble = solve

@@ -68,257 +68,19 @@ class WwwMixin:
         square_size = 40
         size = self.width
 
-        with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
-            fh.write(
-                """<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<style>
-div.clear {
-    clear: both;
-}
-div.clear_left {
-    clear: left;
-}
-div.side {
-    margin: %dpx;
-    float: left;
-}
-"""
-                % side_margin
-            )
-
-            for x in range(1, size - 1):
-                fh.write("div.col%d,\n" % x)
-
-            fh.write(
-                """div.col%d {
-    float: left;
-}
-div.col%d {
-    margin-left: %dpx;
-}
-div#upper,
-div#down {
-    margin-left: %dpx;
-}
-"""
-                % (
-                    size - 1,
-                    size,
-                    (size - 1) * square_size,
-                    (size * square_size) + (3 * side_margin),
-                )
-            )
-
-            fh.write(
-                """
-span.half_square {
-    width: %dpx;
-    height: %dpx;
-    white-space-collapsing: discard;
-    display: inline-block;
-    color: black;
-    font-weight: bold;
-    line-height: %dpx;
-    text-align: center;
-}
-span.square {
-    width: %dpx;
-    height: %dpx;
-    white-space-collapsing: discard;
-    display: inline-block;
-    color: black;
-    font-weight: bold;
-    line-height: %dpx;
-    text-align: center;
-}
-div.square {
-    width: %dpx;
-    height: %dpx;
-    color: black;
-    font-weight: bold;
-    line-height: %dpx;
-    text-align: center;
-}
-div.square span {
-  display:        inline-block;
-  vertical-align: middle;
-  line-height:    normal;
-}
-div#colormapping {
-    float: left;
-}
-div#bottom {
-    cursor: pointer;
-}
-div#bottom div.initial_rgb_values {
-    display: none;
-}
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-$(document).ready(function()
-{
-    $("div#bottom").click(function(event)
-    {
-        if ($("div#bottom div.final_cube").is(":visible")) {
-            $("div#bottom div.initial_rgb_values").show();
-            $("div#bottom div.final_cube").hide();
-        } else {
-            $("div#bottom div.initial_rgb_values").hide();
-            $("div#bottom div.final_cube").show();
-        }
-    })
-});
-</script>
-<title>Rubiks Cube Color Resolver</title>
-</head>
-<body>
-"""
-                % (
-                    int(square_size / 2),
-                    square_size,
-                    square_size,
-                    square_size,
-                    square_size,
-                    square_size,
-                    square_size,
-                    square_size,
-                    square_size,
-                )
-            )
+        print("")
 
     def write_color_corners(self, desc, corners):
-        with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
-            fh.write("<div class='clear colors'>\n")
-            fh.write("<h2>%s</h2>\n" % desc)
-
-            for row_index in range(3):
-                for (index, (corner0, corner1, corner2)) in enumerate(corners):
-
-                    if row_index == 0:
-                        square = corner0
-                    elif row_index == 1:
-                        square = corner1
-                    elif row_index == 2:
-                        square = corner2
-                    else:
-                        raise ValueError(row_index)
-
-                    (red, green, blue) = (
-                        square.lab.red,
-                        square.lab.green,
-                        square.lab.blue,
-                    )
-
-                    if index and index % 2 == 0:
-                        fh.write("<span class='half_square'></span>")
-
-                    fh.write(
-                        "<span class='square' style='background-color:#%02x%02x%02x' title='RGB (%s, %s, %s), Lab (%s, %s, %s), color %s, side %s'>%s</span>\n"  # noqa: E501
-                        % (
-                            red,
-                            green,
-                            blue,
-                            red,
-                            green,
-                            blue,
-                            int(square.lab.L),
-                            int(square.lab.a),
-                            int(square.lab.b),
-                            square.color_name,
-                            square.side_name,
-                            square.position,
-                        )
-                    )
-                fh.write("<br>")
-            fh.write("</div>\n")
+        print("")
 
     def write_color_edge_pairs(self, desc, square_pairs):
-        with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
-            fh.write("<div class='clear colors'>\n")
-            fh.write("<h2>%s</h2>\n" % desc)
-
-            for use_square1 in (True, False):
-                for (index, (square1, square2)) in enumerate(square_pairs):
-
-                    if use_square1:
-                        square = square1
-                    else:
-                        square = square2
-
-                    (red, green, blue) = (
-                        square.lab.red,
-                        square.lab.green,
-                        square.lab.blue,
-                    )
-
-                    if index and index % 2 == 0:
-                        fh.write("<span class='half_square'></span>")
-
-                    fh.write(
-                        "<span class='square' style='background-color:#%02x%02x%02x' title='RGB (%s, %s, %s), Lab (%s, %s, %s), color %s, side %s'>%s</span>\n"  # noqa: E501
-                        % (
-                            red,
-                            green,
-                            blue,
-                            red,
-                            green,
-                            blue,
-                            int(square.lab.L),
-                            int(square.lab.a),
-                            int(square.lab.b),
-                            square.color_name,
-                            square.side_name,
-                            square.position,
-                        )
-                    )
-                fh.write("<br>")
-            fh.write("</div>\n")
+        print("")
 
     def write_colors(self, desc, squares):
-        with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
-            squares_per_row = int(len(squares) / 6)
-            fh.write("<div class='clear colors'>\n")
-            fh.write("<h2>%s</h2>\n" % desc)
-
-            count = 0
-            for square in squares:
-                (red, green, blue) = (square.lab.red, square.lab.green, square.lab.blue)
-                fh.write(
-                    "<span class='square' style='background-color:#%02x%02x%02x' title='RGB (%s, %s, %s), Lab (%s, %s, %s), color %s, side %s'>%d</span>\n"  # noqa: E501
-                    % (
-                        red,
-                        green,
-                        blue,
-                        red,
-                        green,
-                        blue,
-                        int(square.lab.L),
-                        int(square.lab.a),
-                        int(square.lab.b),
-                        square.color_name,
-                        square.side_name,
-                        square.position,
-                    )
-                )
-
-                count += 1
-
-                if count % squares_per_row == 0:
-                    fh.write("<br>")
-            fh.write("</div>\n")
+        print("")
 
     def www_footer(self):
-        with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
-            fh.write(
-                """
-</body>
-</html>
-"""
-            )
+        print("")
 
     def html_cube(self, desc, use_html_colors, div_class):
         cube = ["dummy"]
@@ -396,36 +158,12 @@ $(document).ready(function()
         html.append("</div>")
         return "".join(html)
 
-    def write_html(self, html):
-        with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
-            fh.write(html)
+    # def write_html(self, html):
+    #     with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
+    #         fh.write(html)
 
     def _write_colors(self, desc, box):
-        with open(HTML_FILENAME, open_mode(HTML_FILENAME)) as fh:
-            fh.write("<div class='clear colors'>\n")
-            fh.write("<h2>{}</h2>\n".format(desc))
-
-            for color_name in ("Wh", "Ye", "Gr", "Bu", "OR", "Rd"):
-                lab = box[color_name]
-
-                fh.write(
-                    "<span class='square' style='background-color:#%02x%02x%02x' title='RGB (%s, %s, %s), Lab (%s, %s, %s), color %s'>%s</span>\n"  # noqa: E501
-                    % (
-                        lab.red,
-                        lab.green,
-                        lab.blue,
-                        lab.red,
-                        lab.green,
-                        lab.blue,
-                        int(lab.L),
-                        int(lab.a),
-                        int(lab.b),
-                        color_name,
-                        color_name,
-                    )
-                )
-            fh.write("<br>")
-            fh.write("</div>\n")
+        print("")
 
     def write_crayola_colors(self):
         self._write_colors("crayola box", crayola_colors)
